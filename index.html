@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Lock</title>
+    <style>
+        /* Good this is selacted for final project */
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e5ec;
+            margin: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #e0e5ec;
+            /* Blue background for the header */
+            color: white;
+            /* White text color */
+            padding: 20px;
+            border-radius: 10px;
+            /* Rounded corners for the header */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for a clean look */
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header .logo h1 {
+            font-size: 1.8rem;
+            color: #000000;
+            /* White text color */
+        }
+
+        /* Toggle Button Styling */
+        .toggle-btn {
+            background-color: #e0e5ec;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #000000;
+            padding: 10px 15px;
+            border-radius: 12px;
+            box-shadow: 6px 6px 12px #babecc, -6px -6px 12px #ffffff;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .toggle-btn:active {
+            box-shadow: inset 6px 6px 12px #babecc, inset -6px -6px 12px #ffffff;
+        }
+
+        .toggle-btn .icon {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Category and Button Container Styling */
+        .category {
+            margin-bottom: 20px;
+            border-radius: 20px;
+            padding: 20px;
+            background: #e0e5ec;
+            /* White background for categories */
+            box-shadow: 7px 7px 15px #babecc, -7px -7px 15px #ffffff;
+        }
+
+        .category h2 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Times New Roman', Times, serif
+        }
+
+        .button-container {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .skill-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #e0e5ec;
+            color: #48AE83;
+            ;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 6px 6px 12px #babecc, -6px -6px 12px #ffffff;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .skill-button img {
+            max-height: 24px;
+            /* Adjust height as needed */
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .skill-button i {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .skill-button:hover {
+            background-color: #d1d9e6;
+            color: #0056b3;
+            box-shadow: 4px 4px 10px #babecc, -4px -4px 10px #ffffff;
+        }
+
+        .skill-button:active {
+            box-shadow: inset 6px 6px 12px #babecc, inset -6px -6px 12px #ffffff;
+        }
+
+        /* Control Button Styling */
+        #controlBtn {
+            padding: 10px 20px;
+            background-color: #e0e5ec;
+            color: #28a745;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            box-shadow: 6px 6px 12px #babecc, -6px -6px 12px #ffffff;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #controlBtn.off {
+            color: #dc3545;
+        }
+
+        #controlBtn:active {
+            box-shadow: inset 6px 6px 12px #babecc, inset -6px -6px 12px #ffffff;
+        }
+    </style>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="p__1_-removebg-preview (2) (1).png" alt="Logo">
+            <h1>Privacy Lock</h1>
+        </div>
+    </header>
+
+    <!-- On/Off Control Button -->
+    <button id="controlBtn" onclick="toggleAutoExpand()">Turn Off Auto Expand</button>
+
+    <!-- Web Development Category -->
+    <div class="category">
+        <h2>
+            Sponser
+            <button class="toggle-btn" onclick="toggleButtons(this)">
+                Show Resources
+                <span class="icon">▼</span>
+            </button>
+        </h2>
+        <div class="button-container">
+      <!--      <a href="https://www.uidai.gov.in/" class="skill-button">
+                <img src="p__1_-removebg-preview (2) (1).png" alt="UIDAI"> google
+            </a>
+            <a href="https://www.digilocker.gov.in/" class="skill-button">
+                <img src="p-removebg-preview.png" alt="UIDAI"> DigiLocker
+            </a>
+            <a href="https://www.incometaxindiaefiling.gov.in/" class="skill-button">
+                <img src="p-removebg-preview.png" alt="UIDAI"> Income Tax India E-Filing
+            </a>
+            <a href="https://www.uidai.gov.in/" class="skill-button">
+                <img src="p__1_-removebg-preview (2) (1).png" alt="UIDAI"> UIDAI (Aadhaar)
+            </a>
+            <a href="https://www.digilocker.gov.in/" class="skill-button">
+                <img src="p__1_-removebg-preview (2) (1).png" alt="UIDAI"> DigiLocker
+            </a>
+          -->
+        </div>
+    </div>
+
+
+
+
+
+    <!-- जन सेवा केंद्र Category -->
+    <div class="category">
+        <h2>
+            जन सेवा केंद्र
+            <button class="toggle-btn" onclick="toggleButtons(this)">
+                Show Resources
+                <span class="icon">▼</span>
+            </button>
+        </h2>
+        <div class="button-container">
+            <a href="http://edistrict.up.gov.in/" class="skill-button"><i class="fas fa-file-alt"></i> आय/जाति/निवास
+                प्रमाण पत्र</a>
+            <a href="https://eshram.gov.in/" class="skill-button"><i class="fas fa-id-card"></i> ई-श्रम कार्ड</a>
+            <a href="https://sspy-up.gov.in/" class="skill-button"><i class="fas fa-female"></i> विधवा पेंशन</a>
+            <a href="https://scholarships.gov.in/" class="skill-button"><i class="fas fa-graduation-cap"></i>
+                छात्रवृत्ति फार्म</a>
+            <a href="https://www.irctc.co.in/" class="skill-button"><i class="fas fa-train"></i> रेलवे टिकट</a>
+
+            <a href="https://nhai.gov.in/fastag" class="skill-button"><i class="fas fa-money-bill-wave"></i> फास्टैग
+                रिचार्ज</a>
+            <a href="https://sspy-up.gov.in/HindiPages/index_h.aspx" class="skill-button"><i
+                    class="fas fa-wheelchair"></i> विकलांग पेंशन</a>
+            <a href="https://parivahan.gov.in/" class="skill-button"><i class="fas fa-id-card-alt"></i> ड्राइविंग
+                लाइसेंस</a>
+
+            <a href="https://www.nvsp.in/" class="skill-button"><i class="fas fa-vote-yea"></i> वोटर कार्ड</a>
+
+            <a href="https://www.uppclonline.com/" class="skill-button"><i class="fas fa-bolt"></i> बिजली बिल</a>
+            <a href="https://sspy-up.gov.in/HindiPages/index_h.aspx" class="skill-button"><i class="fas fa-blind"></i>
+                वृद्धा पेंशन</a>
+            <a href="http://upbhulekh.gov.in/" class="skill-button"><i class="fas fa-landmark"></i> खतौनी</a>
+            <a href="https://nfsa.gov.in/" class="skill-button"><i class="fas fa-utensils"></i> राशन कार्ड</a>
+
+            <a href="https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html" class="skill-button"><i
+                    class="fas fa-id-card"></i> पैन कार्ड</a>
+            <a href="https://www.passportindia.gov.in/" class="skill-button"><i class="fas fa-passport"></i>
+                पासपोर्ट</a>
+
+            <a href="https://uidai.gov.in/" class="skill-button"><i class="fas fa-fingerprint"></i> आधार कार्ड</a>
+            <a href="http://edistrict.up.gov.in/" class="skill-button"><i class="fas fa-certificate"></i> जन्म/मृत्यु
+                प्रमाण पत्र</a>
+            <a href="https://www.onlinesbi.com/sbicollect/" class="skill-button"><i class="fas fa-credit-card"></i>
+                ऑनलाइन फीस जमा करें</a>
+        </div>
+
+    </div>
+
+    <!-- Artificial Intelligence Category -->
+    <div class="category">
+        <h2>
+            Artificial Intelligence Tools
+            <button class="toggle-btn" onclick="toggleButtons(this)">
+                Show Resources
+                <span class="icon">▼</span>
+            </button>
+        </h2>
+        <div class="button-container">
+            <a href="https://www.aixploria.com/en/category/image-ai-en/" class="skill-button"><i
+                    class="fas fa-image"></i> Image Generators</a>
+            <a href="https://www.aixploria.com/en/category/writing-web-seo/" class="skill-button"><i
+                    class="fas fa-pen-nib"></i> Writing & Web SEO</a>
+            <a href="https://www.aixploria.com/en/category/ai-chat-assistant/" class="skill-button"><i
+                    class="fas fa-comments"></i> AI Chat Assistants</a>
+            <a href="https://www.aixploria.com/en/category/video-generators/" class="skill-button"><i
+                    class="fas fa-video"></i> Video Generators</a>
+            <a href="https://www.aixploria.com/en/category/voice-reading/" class="skill-button"><i
+                    class="fas fa-microphone"></i> Text To Speech</a>
+
+            <a href="https://www.aixploria.com/en/category/education-en/" class="skill-button"><i
+                    class="fas fa-graduation-cap"></i> Education / Studies</a>
+            <a href="https://www.aixploria.com/en/category/e-commerce-en/" class="skill-button"><i
+                    class="fas fa-shopping-cart"></i> E-Commerce</a>
+            <a href="https://www.aixploria.com/en/category/ai-detection-en/" class="skill-button"><i
+                    class="fas fa-shield-alt"></i> AI Detection</a>
+            <a href="https://www.aixploria.com/en/category/human-resources-ai/" class="skill-button"><i
+                    class="fas fa-user-tie"></i> Human Resources</a>
+            <a href="https://www.aixploria.com/en/category/e-mail-en/" class="skill-button"><i
+                    class="fas fa-envelope"></i> E-Mail</a>
+
+            <a href="https://www.aixploria.com/en/category/logo-creation/" class="skill-button"><i
+                    class="fas fa-drafting-compass"></i> Logo Creation</a>
+            <a href="https://www.aixploria.com/en/category/websites-ai/" class="skill-button"><i
+                    class="fas fa-laptop-code"></i> Website & Design</a>
+            <a href="https://www.aixploria.com/en/category/life-assistants/" class="skill-button"><i
+                    class="fas fa-heart"></i> Life Assistants</a>
+            <a href="https://www.aixploria.com/en/category/memory-en/" class="skill-button"><i class="fas fa-brain"></i>
+                Memory</a>
+            <a href="https://www.aixploria.com/en/category/search-engine/" class="skill-button"><i
+                    class="fas fa-search"></i> Search Engine</a>
+
+            <a href="https://www.aixploria.com/en/category/image-editing/" class="skill-button"><i
+                    class="fas fa-edit"></i> Image Editing</a>
+            <a href="https://www.aixploria.com/en/category/video-edition/" class="skill-button"><i
+                    class="fas fa-video"></i> Video Edition</a>
+            <a href="https://www.aixploria.com/en/category/audio-editing/" class="skill-button"><i
+                    class="fas fa-music"></i> Audio Editing</a>
+            <a href="https://www.aixploria.com/en/category/extensions-chatgpt/" class="skill-button"><i
+                    class="fas fa-plug"></i> Extension ChatGPT</a>
+            <a href="https://www.aixploria.com/en/category/social-assistants-en/" class="skill-button"><i
+                    class="fas fa-share-alt"></i> Social Networks</a>
+            <a href="https://www.aixploria.com/en/category/ai-summarizer/" class="skill-button"><i
+                    class="fas fa-list-alt"></i> Summarizer</a>
+            <a href="https://www.aixploria.com/en/category/productivity-en/" class="skill-button"><i
+                    class="fas fa-tasks"></i> Productivity</a>
+            <a href="https://www.aixploria.com/en/category/presentation-en/" class="skill-button"><i
+                    class="fas fa-chart-bar"></i> Presentation</a>
+            <a href="https://www.aixploria.com/en/category/files-spreadsheets/" class="skill-button"><i
+                    class="fas fa-file-alt"></i> Files & Spreadsheets</a>
+            <a href="https://www.aixploria.com/en/category/music/" class="skill-button"><i class="fas fa-music"></i>
+                Music</a>
+            <a href="https://www.aixploria.com/en/category/face-swap-deepfake-en/" class="skill-button"><i
+                    class="fas fa-smile"></i> Face Swap & Deep Fake</a>
+            <a href="https://www.aixploria.com/en/category/finance-en/" class="skill-button"><i
+                    class="fas fa-wallet"></i> Finance</a>
+            <a href="https://www.aixploria.com/en/category/ai-text-generators/" class="skill-button"><i
+                    class="fas fa-font"></i> Text Generators</a>
+            <a href="https://www.aixploria.com/en/category/research-science-en/" class="skill-button"><i
+                    class="fas fa-flask"></i> Research & Science</a>
+
+            <a href="https://www.aixploria.com/en/category/text-to-video-en/" class="skill-button"><i
+                    class="fas fa-video"></i> Text To Video</a>
+            <a href="https://www.aixploria.com/en/category/translation-ai/" class="skill-button"><i
+                    class="fas fa-keyboard"></i> Translation</a>
+            <a href="https://www.aixploria.com/en/category/marketing-ai/" class="skill-button"><i
+                    class="fas fa-bullhorn"></i> Marketing</a>
+            <a href="https://www.aixploria.com/en/category/transcriber/" class="skill-button"><i
+                    class="fas fa-keyboard"></i> Transcriber</a>
+
+            <a href="https://www.aixploria.com/en/category/storytelling-generator/" class="skill-button"><i
+                    class="fas fa-book"></i> Story Telling Generator</a>
+            <a href="https://www.aixploria.com/en/category/chatbot-ai/" class="skill-button"><i
+                    class="fas fa-robot"></i> Chat Bots</a>
+            <a href="https://www.aixploria.com/en/category/ai-voice-cloning/" class="skill-button"><i
+                    class="fas fa-voice"></i> Voice Cloning</a>
+            <a href="https://www.aixploria.com/en/category/avatars-en/" class="skill-button"><i class="fas fa-user"></i>
+                Avatar</a>
+
+            <a href="https://www.aixploria.com/en/category/amazing/" class="skill-button"><i class="fas fa-star"></i>
+                Amazing</a>
+            <a href="https://www.aixploria.com/en/category/no-code-en/" class="skill-button"><i class="fas fa-cogs"></i>
+                No Code / Low Code</a>
+            <a href="https://www.aixploria.com/en/category/assistant-code-en/" class="skill-button"><i
+                    class="fas fa-code"></i> Assistant Code</a>
+            <a href="https://www.aixploria.com/en/category/developer-tools/" class="skill-button"><i
+                    class="fas fa-tools"></i> Developer Tools</a>
+
+            <a href="https://www.aixploria.com/en/category/legal-assistants/" class="skill-button"><i
+                    class="fas fa-balance-scale"></i> Legal Assistants</a>
+            <a href="https://www.aixploria.com/en/category/business-study/" class="skill-button"><i
+                    class="fas fa-briefcase"></i> Business</a>
+
+            <a href="https://www.aixploria.com/en/category/ia-useful/" class="skill-button"><i class="fas fa-magic"></i>
+                AI Useful</a>
+            <a href="https://www.aixploria.com/en/category/3d-model/" class="skill-button"><i class="fas fa-cube"></i>
+                3D Model</a>
+            <a href="https://www.aixploria.com/en/category/prompts-help/" class="skill-button"><i
+                    class="fas fa-lightbulb"></i> Prompts & Aids</a>
+            <a href="https://www.aixploria.com/en/category/ai-autonomous/" class="skill-button"><i
+                    class="fas fa-brain"></i> AI Agents</a>
+
+
+            <a href="https://www.aixploria.com/en/category/real-estate/" class="skill-button"><i
+                    class="fas fa-building"></i> Real Estate / Architect</a>
+            <a href="https://www.aixploria.com/en/category/games-en/" class="skill-button"><i
+                    class="fas fa-gamepad"></i> Games</a>
+            <a href="https://www.aixploria.com/en/category/art-en/" class="skill-button"><i
+                    class="fas fa-paint-brush"></i> Art</a>
+
+            <a href="https://www.aixploria.com/en/category/travel/" class="skill-button"><i class="fas fa-plane"></i>
+                Travel</a>
+            <a href="https://www.aixploria.com/en/category/fashion-en/" class="skill-button"><i
+                    class="fas fa-tshirt"></i> Fashion</a>
+            <a href="https://www.aixploria.com/en/category/dating-relationships-ai/" class="skill-button"><i
+                    class="fas fa-heart"></i> Dating & Relationship</a>
+            <a href="https://www.aixploria.com/en/category/healthcare/" class="skill-button"><i
+                    class="fas fa-stethoscope"></i> Health Care</a>
+            <a href="https://www.aixploria.com/en/category/automation-ai-workflows/" class="skill-button"><i
+                    class="fas fa-robot"></i> Automation</a>
+
+
+            <a href="https://www.aixploria.com/en/category/llm-model-ai-en/" class="skill-button"><i
+                    class="fas fa-brain"></i> LLM Models</a>
+            <a href="https://www.aixploria.com/en/category/data-analytics-ai/" class="skill-button"><i
+                    class="fas fa-database"></i> Data & Analytics</a>
+            <a href="https://www.aixploria.com/en/category/github-project-ai/" class="skill-button"><i
+                    class="fab fa-github"></i> GitHub Projects</a>
+            <a href="https://www.aixploria.com/en/category/thisdoesnotexist-en/" class="skill-button"><i
+                    class="fas fa-random"></i> This Does Not Exist</a>
+
+            <a href="https://www.aixploria.com/en/category/robots-devices-ai/" class="skill-button"><i
+                    class="fas fa-robot"></i> Robots And Devices</a>
+            <a href="https://www.aixploria.com/en/category/ai-assistive-technology-at/" class="skill-button"><i
+                    class="fas fa-wheelchair"></i> Assistive Technology</a>
+            <a href="https://www.aixploria.com/en/category/future-tools-ai/" class="skill-button"><i
+                    class="fas fa-forward"></i> Future Tools</a>
+        </div>
+
+    </div>
+
+    <!-- Cybersecurity Category -->
+    <div class="category">
+        <h2>
+            Programming languages
+            <button class="toggle-btn" onclick="toggleButtons(this)">
+                Show Resources
+                <span class="icon">▼</span>
+            </button>
+        </h2>
+        <div class="button-container">
+            <a href="https://www.w3schools.com/html/default.asp" class="skill-button">
+                <i class="fab fa-html5"></i> HTML
+            </a>
+            <a href="https://www.w3schools.com/css/default.asp" class="skill-button">
+                <i class="fab fa-css3-alt"></i> CSS
+            </a>
+            <a href="https://www.w3schools.com/js/default.asp" class="skill-button">
+                <i class="fab fa-js"></i> JAVASCRIPT
+            </a>
+            <a href="https://www.w3schools.com/js/default.asp" class="skill-button">
+                <i class="fas fa-code"></i> TYPESCRIPT
+            </a>
+            <a href="https://www.w3schools.com/python/default.asp" class="skill-button">
+                <i class="fab fa-python"></i> PYTHON
+            </a>
+            <a href="https://www.w3schools.com/java/default.asp" class="skill-button">
+                <i class="fab fa-java"></i> JAVA
+            </a>
+            <a href="https://www.w3schools.com/cpp/default.asp" class="skill-button">
+                <i class="fas fa-copyright"></i> C++
+            </a>
+            <a href="https://www.geeksforgeeks.org/ruby-programming-language/" class="skill-button">
+                <i class="fas fa-gem"></i> RUBY
+            </a>
+            <a href="https://www.w3schools.com/php/default.asp" class="skill-button">
+                <i class="fab fa-php"></i> PHP
+            </a>
+            <a href="ooooo" class="skill-button">
+                <i class="fab fa-swift"></i> SWIFT
+            </a>
+            <a href="https://www.w3schools.com/kotlin/index.php" class="skill-button">
+                <i class="fas fa-mobile-alt"></i> KOTLIN
+            </a>
+            <a href="https://www.w3schools.com/r/default.asp" class="skill-button">
+                <i class="fas fa-chart-bar"></i> R
+            </a>
+            <a href="https://www.w3schools.com/go/index.php" class="skill-button">
+                <i class="fas fa-bolt"></i> GO
+            </a>
+            <a href="https://dart.dev/guides" class="skill-button">
+                <i class="fab fa-digital-ocean"></i> DART
+            </a>
+        
+            </a>
+            <a href="https://www.w3schools.com/sql/default.asp" class="skill-button">
+                <i class="fas fa-database"></i> SQL
+            </a>
+         
+
+    </div>
+
+    <script>
+        // Variable to control automatic expansion
+        let autoExpand = true;
+
+        // Detect device type
+        const isMobileDevice = () => {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        };
+
+        // Toggle button click event
+        function toggleButtons(button) {
+            const buttonContainer = button.closest('.category').querySelector('.button-container');
+            const icon = button.querySelector('.icon');
+
+            if (buttonContainer.style.display === "none" || buttonContainer.style.display === "") {
+                buttonContainer.style.display = "flex";
+                button.textContent = "Hide Resources";
+                icon.textContent = "▲";
+            } else {
+                buttonContainer.style.display = "none";
+                button.textContent = "Show Resources";
+                icon.textContent = "▼";
+            }
+        }
+
+        // Function to handle auto-expand control
+        function toggleAutoExpand() {
+            const btn = document.getElementById('controlBtn');
+            autoExpand = !autoExpand;
+            btn.textContent = autoExpand ? 'Turn Off Auto Expand' : 'Turn On Auto Expand';
+            btn.classList.toggle('off', !autoExpand);
+            updateAutoExpand();
+        }
+
+        // Update auto-expand based on device type
+        function updateAutoExpand() {
+            const categories = document.querySelectorAll('.category');
+            if (autoExpand && !isMobileDevice()) {
+                categories.forEach(category => {
+                    const buttonContainer = category.querySelector('.button-container');
+                    buttonContainer.style.display = 'flex';
+                    const button = category.querySelector('.toggle-btn');
+                    button.textContent = 'Hide Resources';
+                    button.querySelector('.icon').textContent = '▲';
+                });
+            } else {
+                categories.forEach(category => {
+                    const buttonContainer = category.querySelector('.button-container');
+                    buttonContainer.style.display = 'none';
+                    const button = category.querySelector('.toggle-btn');
+                    button.textContent = 'Show Resources';
+                    button.querySelector('.icon').textContent = '▼';
+                });
+            }
+        }
+
+        // Initialize the page state
+        updateAutoExpand();
+    </script>
+</body>
+
+</html>
